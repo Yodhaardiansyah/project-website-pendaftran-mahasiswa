@@ -5349,11 +5349,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Backup_NAS\\Project\\Website\\pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\pendaftran-mahasiswa.Server.csproj",
+      "projectUniqueName": "D:\\Backup_NAS\\Project\\Git\\project-website-pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\pendaftran-mahasiswa.Server.csproj",
       "projectName": "pendaftran-mahasiswa.Server",
-      "projectPath": "D:\\Backup_NAS\\Project\\Website\\pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\pendaftran-mahasiswa.Server.csproj",
+      "projectPath": "D:\\Backup_NAS\\Project\\Git\\project-website-pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\pendaftran-mahasiswa.Server.csproj",
       "packagesPath": "C:\\Users\\yodha\\.nuget\\packages\\",
-      "outputPath": "D:\\Backup_NAS\\Project\\Website\\pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\obj\\",
+      "outputPath": "D:\\Backup_NAS\\Project\\Git\\project-website-pendaftran-mahasiswa\\pendaftran-mahasiswa.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
