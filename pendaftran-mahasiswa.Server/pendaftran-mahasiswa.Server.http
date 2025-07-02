@@ -1,0 +1,6 @@
+@pendaftran_mahasiswa.Server_HostAddress = http://localhost:5075
+
+GET {{pendaftran_mahasiswa.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
