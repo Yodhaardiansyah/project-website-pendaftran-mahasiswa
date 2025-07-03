@@ -85,14 +85,3 @@ Use this to explore and test the backend API endpoints.
 README.md                      # This documentation file
 ```
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit pull requests.
-
-## License
-
-Specify your project license here.
-
-## Contact
-
-For support or inquiries, contact the project maintainer.
