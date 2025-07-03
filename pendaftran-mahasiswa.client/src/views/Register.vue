@@ -40,7 +40,9 @@
 
           <!-- Foto -->
           <div class="mt-4">
-            <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Upload Foto 3x4 *</label>
+            <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">
+              Upload Foto 3x4 (format JPG/PNG) *
+            </label>
             <input type="file" @change="onFileChange" accept="image/*" class="input" required />
             <div v-if="previewFoto" class="mt-4">
               <img :src="previewFoto" alt="Preview Foto" class="h-32 object-contain rounded border" />
@@ -110,8 +112,40 @@
     methods: {
       onFileChange(e) {
         const file = e.target.files[0]
-        this.form.foto = file
-        this.previewFoto = URL.createObjectURL(file)
+        if (!file) return
+
+        // Validasi format file
+        const validTypes = ['image/jpeg', 'image/png']
+        if (!validTypes.includes(file.type)) {
+          alert('Format foto tidak valid. Harus JPG atau PNG.')
+          this.form.foto = null
+          this.previewFoto = null
+          return
+        }
+
+        // Validasi ukuran rasio 3:4
+        const img = new Image()
+        img.onload = () => {
+          const ratio = img.width / img.height
+          const expectedRatio = 3 / 4
+          const tolerance = 0.1 // 10% toleransi
+
+          if (Math.abs(ratio - expectedRatio) > tolerance) {
+            alert('Ukuran foto harus rasio 3x4, misalnya 300x400 piksel.')
+            this.form.foto = null
+            this.previewFoto = null
+          } else {
+            this.form.foto = file
+            this.previewFoto = URL.createObjectURL(file)
+          }
+        }
+        img.onerror = () => {
+          alert('Gagal membaca gambar.')
+          this.form.foto = null
+          this.previewFoto = null
+        }
+
+        img.src = URL.createObjectURL(file)
       },
       async register() {
         const formData = new FormData()

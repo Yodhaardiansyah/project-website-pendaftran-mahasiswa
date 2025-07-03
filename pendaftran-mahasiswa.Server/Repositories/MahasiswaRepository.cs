@@ -32,5 +32,15 @@ namespace pendaftran_mahasiswa.Server.Repositories
             _context.Mahasiswas.Update(mhs);
             await _context.SaveChangesAsync();
         }
+        public async Task Delete(int id)
+        {
+            var mhs = await _context.Mahasiswas.FindAsync(id);
+            if (mhs != null)
+            {
+                _context.Mahasiswas.Remove(mhs);
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

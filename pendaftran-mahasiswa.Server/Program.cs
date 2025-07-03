@@ -1,40 +1,42 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using pendaftran_mahasiswa.Server.Data;
 using pendaftran_mahasiswa.Server.Repositories;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Environment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
+// Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddControllers();
 
 builder.Services.AddControllers().AddNewtonsoftJson(); // untuk parsing 
 builder.Services.AddScoped<IMahasiswaRepository, MahasiswaRepository>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// ✅ Tambahkan policy CORS dengan nama eksplisit
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowLocalhostVue", policy =>
     {
-        policy.WithOrigins("https://localhost:64479") // ganti sesuai port frontend kamu
+        policy.WithOrigins("https://pendaftaran-mahasiswa.arunovasi.my.id") 
               .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials(); // jika pakai cookie/session
+              .AllowAnyMethod();
     });
 });
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
+app.UseRouting(); 
+// ✅ Gunakan policy yang sesuai
+app.UseCors("AllowLocalhostVue");
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -42,11 +44,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors();
+
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.MapFallbackToFile("/index.html");
 
 app.Run();

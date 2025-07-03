@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using pendaftran_mahasiswa.Server.DTOs;
 using pendaftran_mahasiswa.Server.Models;
 using pendaftran_mahasiswa.Server.Repositories;
 
+
 namespace pendaftran_mahasiswa.Server.Controllers
 {
+    [EnableCors("AllowLocalhostVue")]
     [ApiController]
     [Route("api/[controller]")]
     public class MahasiswaController : Controller
@@ -28,6 +31,20 @@ namespace pendaftran_mahasiswa.Server.Controllers
 
             string fileName = Guid.NewGuid() + Path.GetExtension(dto.Foto.FileName);
             string filePath = Path.Combine(uploads, fileName);
+            // Format nomor pendaftaran: YYYYMMDD-XXX
+            string tanggal = DateTime.UtcNow.ToString("yyyyMMdd");
+
+            // Ambil semua mahasiswa dengan nomor di hari yang sama
+            var semuaMahasiswa = await _repo.GetAll();
+            int countHariIni = semuaMahasiswa
+                .Count(m => m.NomorPendaftaran != null && m.NomorPendaftaran.StartsWith(tanggal));
+
+            // Tambahkan urutan
+            string nomorUrut = (countHariIni + 1).ToString("D3");
+
+            // Gabungkan
+            string nomorPendaftaran = $"{tanggal}-{nomorUrut}";
+
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -36,6 +53,7 @@ namespace pendaftran_mahasiswa.Server.Controllers
 
             var mhs = new Mahasiswa
             {
+                NomorPendaftaran = nomorPendaftaran,
                 NamaLengkap = dto.NamaLengkap,
                 Email = dto.Email,
                 Password = dto.Password,
@@ -87,5 +105,26 @@ namespace pendaftran_mahasiswa.Server.Controllers
             var data = await _repo.GetAll();
             return Ok(data);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var mhs = await _repo.GetById(id);
+            if (mhs == null)
+                return NotFound();
+
+            // 🧹 Hapus file foto jika ada
+            if (!string.IsNullOrEmpty(mhs.Foto))
+            {
+                var path = Path.Combine(_env.WebRootPath ?? "wwwroot", mhs.Foto.TrimStart('/'));
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+            }
+
+            await _repo.Delete(id);
+            return Ok(new { message = "Data mahasiswa berhasil dihapus." });
+        }
+
     }
 }

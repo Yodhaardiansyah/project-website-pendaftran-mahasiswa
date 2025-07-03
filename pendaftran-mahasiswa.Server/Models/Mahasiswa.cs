@@ -3,6 +3,7 @@
     public class Mahasiswa
     {
         public int Id { get; set; }
+        public string? NomorPendaftaran { get; set; }
 
         // Wajib
         public string NamaLengkap { get; set; }

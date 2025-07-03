@@ -44,6 +44,7 @@ D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasi
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.Configuration.ConfigurationManager.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.Diagnostics.DiagnosticSource.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.Drawing.Common.dll
+D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.Private.Windows.Core.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.Formats.Asn1.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.IdentityModel.Tokens.Jwt.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\System.IO.Pipelines.dll
@@ -60,9 +61,7 @@ D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasi
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Backup_NAS\Project\Git\project-website-pendaftran-mahasiswa\pendaftran-mahasiswa.Server\publish\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll

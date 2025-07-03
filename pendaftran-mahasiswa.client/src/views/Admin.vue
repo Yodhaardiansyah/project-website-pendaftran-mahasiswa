@@ -17,6 +17,7 @@
         <table class="w-full text-sm text-left">
           <thead class="bg-gray-200 dark:bg-gray-700">
             <tr>
+              <th class="px-4 py-3">No. Pendaftaran</th>
               <th class="px-4 py-3">Nama</th>
               <th class="px-4 py-3">Email</th>
               <th class="px-4 py-3">Status</th>
@@ -25,6 +26,7 @@
           </thead>
           <tbody>
             <tr v-for="mhs in filteredMahasiswas" :key="mhs.id" class="border-t dark:border-gray-700">
+              <td class="px-4 py-2">{{ mhs.nomorPendaftaran || '-' }}</td>
               <td class="px-4 py-2">{{ mhs.namaLengkap }}</td>
               <td class="px-4 py-2">{{ mhs.email }}</td>
               <td class="px-4 py-2">
@@ -36,6 +38,7 @@
                   <button @click="lihatDetail(mhs)" class="btn bg-blue-500 hover:bg-blue-600 px-3 py-1">Detail</button>
                   <button @click="openChecklistModal(mhs)" class="btn bg-green-600 hover:bg-green-700 px-3 py-1">Approve</button>
                   <button @click="ubahStatus(mhs.id, 'Rejected')" class="btn bg-red-600 hover:bg-red-700 px-3 py-1">Reject</button>
+                  <button @click="hapusMahasiswa(mhs.id)" class="btn bg-gray-600 hover:bg-gray-700 px-3 py-1">Hapus</button>
                 </div>
               </td>
             </tr>
@@ -53,6 +56,7 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div><strong>Nomor Pendaftaran:</strong> {{ selectedMahasiswa.nomorPendaftaran || '-' }}</div>
             <div><strong>Nama:</strong> {{ selectedMahasiswa.namaLengkap }}</div>
             <div><strong>Email:</strong> {{ selectedMahasiswa.email }}</div>
             <div><strong>Alamat Asal:</strong> {{ selectedMahasiswa.alamatAsal || '-' }}</div>
@@ -132,6 +136,7 @@
 </template>
 
 <script>
+
   import api from '../api'
 
   export default {
@@ -141,7 +146,7 @@
         selectedMahasiswa: null,
         checklistMahasiswa: null,
         showIncompleteOnly: false,
-        baseURL: 'http://localhost:5075'
+        baseURL: import.meta.env.VITE_API_URL
       }
     },
     computed: {
@@ -152,6 +157,15 @@
       }
     },
     async created() {
+      const role = localStorage.getItem('role')
+      const isLoggedIn = localStorage.getItem('id')
+
+      // ⛔ Cek apakah login dan role = admin
+      if (!isLoggedIn || role !== 'admin') {
+        this.$router.push('/login')
+        return
+      }
+
       try {
         const res = await api.get('/mahasiswa')
         this.mahasiswas = res.data
@@ -176,6 +190,19 @@
       openChecklistModal(mhs) {
         this.checklistMahasiswa = mhs
       },
+      async hapusMahasiswa(id) {
+        if (confirm('Yakin ingin menghapus data ini?')) {
+          try {
+            await api.delete(`/mahasiswa/${id}`)
+            this.mahasiswas = this.mahasiswas.filter(m => m.id !== id)
+            alert('Data berhasil dihapus.')
+          } catch (error) {
+            console.error('Gagal menghapus:', error)
+            alert('Terjadi kesalahan saat menghapus.')
+          }
+        }
+      },
+
       async approveAfterCheck() {
         const id = this.checklistMahasiswa.id
         await api.put(`/mahasiswa/approve/${id}?status=Approved`)

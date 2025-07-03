@@ -18,10 +18,22 @@
     },
     async created() {
       const id = localStorage.getItem('id')
-      const res = await api.get(`/mahasiswa`)
-      const mhs = res.data.find(m => m.id == id)
-      if (mhs && mhs.foto) {
-        this.fotoUrl = `http://localhost:5075${mhs.foto}`
+      const role = localStorage.getItem('role')
+
+      // 🔒 Validasi login dan role
+      if (!id || role !== 'mahasiswa') {
+        this.$router.push('/login')
+        return
+      }
+
+      try {
+        const res = await api.get(`/mahasiswa`)
+        const mhs = res.data.find(m => m.id == id)
+        if (mhs && mhs.foto) {
+          this.fotoUrl = import.meta.env.VITE_API_URL + `${mhs.foto}`
+        }
+      } catch (error) {
+        console.error('Gagal mengambil data mahasiswa:', error)
       }
     },
     methods: {

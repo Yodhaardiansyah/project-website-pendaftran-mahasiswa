@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\pendaftran-mahasiswa.client",
+    "\\pendaftran-mahasiswa.client\\src",
+    "\\pendaftran-mahasiswa.client\\src\\assets",
+    "\\pendaftran-mahasiswa.client\\src\\router",
+    "\\pendaftran-mahasiswa.client\\src\\views",
+    "\\pendaftran-mahasiswa.Server",
+    "\\pendaftran-mahasiswa.Server\\Controllers",
+    "\\pendaftran-mahasiswa.Server\\Models",
+    "\\pendaftran-mahasiswa.Server\\Repositories"
   ],
+  "SelectedNode": "\\pendaftran-mahasiswa.Server\\Controllers\\MahasiswaController.cs",
   "PreviewInSolutionExplorer": false
 }

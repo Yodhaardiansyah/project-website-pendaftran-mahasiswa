@@ -79,14 +79,17 @@
             password: this.password,
             role: this.role
           })
+          // Simpan semua data
+          localStorage.setItem('role', this.role)
+          localStorage.setItem('nama', res.data.nama)
+          localStorage.setItem('id', res.data.id)
 
           if (this.role === 'admin') {
             this.$router.push('/admin')
           } else {
-            localStorage.setItem('nama', res.data.nama)
-            localStorage.setItem('id', res.data.id)
             this.$router.push('/dashboard')
           }
+
         } catch (err) {
           const msg = err.response?.data?.message || 'Login gagal.'
           alert(msg)

@@ -4,6 +4,7 @@ namespace pendaftran_mahasiswa.Server.Repositories
 {
     public interface IMahasiswaRepository
     {
+        Task Delete(int id);
         Task<List<Mahasiswa>> GetAll();
         Task<Mahasiswa?> GetByEmail(string email);
         Task<Mahasiswa?> GetById(int id);

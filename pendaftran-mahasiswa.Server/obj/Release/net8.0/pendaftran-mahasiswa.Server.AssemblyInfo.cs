@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pendaftran-mahasiswa.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3660db3fb9af3a8af25fbf65076dee5a0d031792")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9b3f34fcf7683a20b31bb8bfbc13a7983bde771")]
 [assembly: System.Reflection.AssemblyProductAttribute("pendaftran-mahasiswa.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pendaftran-mahasiswa.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

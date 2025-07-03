@@ -105,6 +105,9 @@ namespace pendaftran_mahasiswa.Server.Migrations
                     b.Property<string>("NoTelpRumah")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NomorPendaftaran")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
